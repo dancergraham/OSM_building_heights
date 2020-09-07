@@ -28,7 +28,9 @@ def levels2heights(osm_filename, default_storey_height = None):
 
 def main():
     root = tkinter.Tk()
-    osm_filename = askopenfilename()
+    osm_filename = askopenfilename(filetypes=[('*.osm', 'OSM File')])
+    if not osm_filename:
+        return
     levels2heights(osm_filename, default_storey_height= 3.5)
 
 if __name__ == '__main__':
