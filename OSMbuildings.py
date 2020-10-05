@@ -3,6 +3,7 @@ from tkinter.filedialog import askopenfilename
 from xml.etree import ElementTree as ET
 
 def levels2heights(osm_filename, default_storey_height = None):
+    """Write a new osm file with building `height` information added based upon the number of storeys defined in the `buildings:levels` field and an assumed storey height"""
     tree = ET.parse(osm_filename)
     root = tree.getroot()
     for child in root:
