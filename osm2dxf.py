@@ -1,4 +1,4 @@
-from dxfwrite import DXFEngine as dxf
+#from dxfwrite import DXFEngine as dxf
 from xml.etree import ElementTree as ET
 import sys
 import operator
@@ -8,16 +8,18 @@ from math import pi, tan, log
 def generate_dxf(filename, tags):
     lat2y = lambda lat: (180 / pi * log(tan(pi / 4 + lat * (pi / 180) / 2)))
 
-    drawing = dxf.drawing(filename + ".dxf")
+#    drawing = dxf.drawing(filename + ".dxf")
+    output = {}
     xml = ET.parse(filename)
     root = xml.getroot()
-    context = xml.xpathNewContext()
+#    context = xml.xpathNewContext()
 
     for tag in tags:
         layer_name = tag.upper()
         paths = context.xpathEval("/*/way[tag/@k = '%s']" % (tag))
 
-        drawing.add_layer(layer_name)
+#        drawing.add_layer(layer_name)
+        output[layer_name] = {}
 
         n = context.xpathEval("/*/node")
         lat = {}
@@ -82,8 +84,8 @@ def generate_dxf(filename, tags):
 
 
 def main(argv):
-    filename = argv[1]
-    tags = argv[2].split(",")
+    filename = "map.osm.xml"  #argv[1]
+    tags = ["building"]  #argv[2].split(",")
 
     print("generating %s from %s with tags %s..." % (filename + ".dxf", filename, str(tags)))
     generate_dxf(filename, tags)
