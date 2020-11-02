@@ -3,3 +3,5 @@ Convert building heights in stories from Open Street Map to heights in metres, f
 Default storey height = 3.5 m
 
 Many buildings in Open Street Map have the number of stories included but do not have a building height.
+
+Python 3.6+
