@@ -18,7 +18,7 @@ def levels2heights(osm_filename, default_storey_height = None):
                 elif element.attrib['k'] == 'height':
                     has_height = True
                     height = float(element.attrib['v'])
-        if levels and not has_height:
+        if levels and default_storey_height and not has_height:
             child.append(ET.Element('tag', {'k':'height',
                 'v':str(levels*default_storey_height)
                 }))
